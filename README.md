@@ -1,3 +1,49 @@
+# ExecuTorch LLM Android Demo w/ QNN Backend
+
+<div style="display:flex; gap:12px; align-items:flex-start">
+  <img src="./docs/qnn_qwen3.jpg" alt="QNN Qwen3" style="width:360px; height:780px;" />
+  <img src="./docs/example_run.jpg" alt="Conversation example" style="width:360px; height:780px;" />
+</div>
+
+- This demo is built for and tested on SoC SM8550.
+- Pre-built APK can found in the release page.
+- This is based on [Executorch@9267fcc](https://github.com/luffy-yu/executorch/commit/9267fccbf558266913c2caaeb101c4cdc0530eca) and [executorch-examples@58e8f3a](https://github.com/meta-pytorch/executorch-examples/commit/58e8f3ae4541877e306f8c289eb5ee9999b1a1b3).
+- Models can be found at [Qwen3-0.6B-SM8550-Hybrid](https://huggingface.co/K9FxNa/Qwen3-0.6B-SM8550-Hybrid).
+
+
+## Environment
+- Ubuntu 24.04
+- QNN 2.37.0.250724
+- ANDROID NDK 29.0.14206865
+
+## Run
+- Download and install the APK
+- Download `hybrid_llama_qnn.pte` and `tokenizer.json` from [Qwen3-0.6B-SM8550-Hybrid](https://huggingface.co/K9FxNa/Qwen3-0.6B-SM8550-Hybrid).
+
+```
+# model_SM8550.pte is the renamed file of hybrid_llama_qnn.pte on the above figure.
+# No need to rename it.
+adb shell "mkdir -p /data/local/tmp/llama"
+adb push hybrid_llama_qnn.pte /data/local/tmp/llama
+adb push tokenizer.bin /data/local/tmp/llama
+```
+- Open App and set QNN backend, Model, Tokenizer, and Qwen3, Press Load.
+- It should show **Successfully loaded model**.
+
+
+## What fix is made?
+
+- Refer to [QNN Android LlamaDemo Fix Summary](./QNN_ANDROID_FIX_SUMMARY.md)
+
+
+## Reference
+- [LlamaDemo](https://github.com/meta-pytorch/executorch-examples/blob/main/llm/android/LlamaDemo/docs/delegates/qualcomm_README.md)
+
+
+> The following is the original README.
+
+---
+
 # ExecuTorch LLM Android Demo App
 
 This app serves as a valuable resource to inspire your creativity and provide foundational code that you can customize and adapt for your particular use case.
